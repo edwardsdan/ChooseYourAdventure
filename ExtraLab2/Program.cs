@@ -7,7 +7,11 @@ using System.Text.RegularExpressions;
 
 namespace ExtraLab2
 {
+    // repo from parent folder including .sln
     // declare variables here when useful
+    // implement interface (google it)
+    // find a good RNG
+    // separate class for each "class"
     class Validation
     {
         public static string ValidateKnightWeapon(string x)
@@ -81,6 +85,26 @@ namespace ExtraLab2
         {
 
         }
+
+        public static void DeathEvent()
+        {
+
+        }
+
+        public static void KnightEnd()
+        {
+
+        }
+
+        public static void MonkEnd()
+        {
+
+        }
+        
+        public static void ArcherEnd()
+        {
+
+        }
     }
 
     class Program
@@ -92,6 +116,8 @@ namespace ExtraLab2
             {
                 Console.WriteLine("Choose your class! (knight, monk, archer)");
                 ChooseWeapon(Console.ReadLine());
+                ChooseRace();
+
             }
             else
             {
@@ -100,33 +126,37 @@ namespace ExtraLab2
             Console.WriteLine("Goodbye!");
         }
 
-        public static void ChooseWeapon (string x)
+        public static string ChooseWeapon (string x)
         {
-            string Input = x.ToLower();
+            x = x.ToLower();
             string Weapon;
-            while (!Regex.Match(Input, "^(knight|monk|archer)$").Success)
+            while (!Regex.Match(x, "^(knight|monk|archer)$").Success)
             {
                 Console.WriteLine("Can you say that again? I didn't understand. (knight, monk, archer)");
-                Input = Console.ReadLine().ToLower();
+                x = Console.ReadLine().ToLower();
             }
-            if (Input == "knight")
+            if (x == "knight")
             {
                 Console.WriteLine("Choose your weapon! (axe, sword, spear)");
                 Weapon = Console.ReadLine().ToLower();
-                Validation.ValidateKnightWeapon(Weapon);
+                Weapon = Validation.ValidateKnightWeapon(Weapon);
+                return Weapon;
             }
-            else if (Input == "monk")
+            else if (x == "monk")
             {
                 Console.WriteLine("Choose your weapon! (staff, fist, mace)");
                 Weapon = Console.ReadLine().ToLower();
-                Validation.ValidateMonkWeapon(Weapon);
+                Weapon = Validation.ValidateMonkWeapon(Weapon);
+                return Weapon;
             }
-            else if (Input == "archer")
+            else if (x == "archer")
             {
                 Console.WriteLine("Choose your weapon! (bow, crossbow)");
                 Weapon = Console.ReadLine().ToLower();
-                Validation.ValidateArcherWeapon(Weapon);
+                Weapon = Validation.ValidateArcherWeapon(Weapon);
+                return Weapon;
             }
+            return x;
         }
 
         public static void ChooseRace() //validate race, pass string
